@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drider - Велоуслуги и Сервис</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <section class="hero">
+        <div class="hero-content hidden-anim">
+            <h1><span>Ремонт</span> и продажа велосипедов</h1>
+            <p>Вело сервис, надежные запчасти и индивидуальный подход к каждому клиенту в Даугавпилсе.</p>
+            <button class="hero-round-btn" onclick="openModal('Ремонт')">Записаться в сервис</button>
+        </div>
+    </section>
+
+    <section class="stats hidden-anim">
+        <div class="stat-card">
+            <h2 class="counter" data-target="1500">0</h2>
+            <p>Починено</p>
+        </div>
+        <div class="stat-card">
+            <h2 class="counter" data-target="2500">0</h2>
+            <p>Деталей</p>
+        </div>
+        <div class="stat-card">
+            <h2 class="counter" data-target="20">0</h2>
+            <p>Лет опыта</p>
+        </div>
+    </section>
+
+    <section class="services-nav">
+        <span class="section-subtitle">Что мы предлагаем</span>
+        <h2 class="section-title hidden-anim">Наши Услуги</h2>
+        
+        <div class="services-grid">
+            <div class="service-nav-card hidden-anim">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                <h3>Ремонт</h3>
+                <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 20px;">Профессиональное обслуживание и настройка.</p>
+                <a href="#section-repair" class="action-btn" style="width: 100%;">Узнать больше</a>
+            </div>
+            <div class="service-nav-card hidden-anim" style="transition-delay: 0.1s;">
+                <i class="fa-solid fa-bolt"></i>
+                <h3>Аренда</h3>
+                <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 20px;">Прокат E-bike и классических моделей.</p>
+                <a href="#section-rent" class="action-btn" style="width: 100%;">Узнать больше</a>
+            </div>
+            <div class="service-nav-card hidden-anim" style="transition-delay: 0.2s;">
+                <i class="fa-solid fa-bicycle"></i>
+                <h3>Продажа</h3>
+                <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 20px;">Новые велосипеды от топовых брендов.</p>
+                <a href="#section-sale" class="action-btn" style="width: 100%;">Узнать больше</a>
+            </div>
+            <div class="service-nav-card hidden-anim" style="transition-delay: 0.3s;">
+                <i class="fa-solid fa-truck-fast"></i>
+                <h3>Выезд</h3>
+                <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 20px;">Мобильный сервис в любую точку города.</p>
+                <a href="#section-field" class="action-btn" style="width: 100%;">Узнать больше</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="section-repair" class="service-detail-section">
+        <span class="section-subtitle">Мастерская</span>
+        <div class="repair-layout">
+            <div class="repair-img hidden-anim">
+                <img src="serv.png" alt="Сервисный центр">
+            </div>
+            <div class="repair-info hidden-anim">
+                <h2>Сервис</h2>
+                <p>Наша мастерская оснащена новейшим оборудованием для диагностики и ремонта велосипедов любого уровня сложности. От простой замены камеры до полного перебора амортизаторов и настройки гидравлических тормозов.</p>
+                <p>Мы используем только оригинальные запчасти и специализированные смазочные материалы. Ваш байк в надежных руках профессионалов с многолетним стажем.</p>
+                <button class="action-btn" onclick="openModal('Ремонт')">Записаться на ремонт <i class="fa-regular fa-calendar-check"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <section id="section-rent" class="service-detail-section" style="background: rgba(255,255,255,0.01);">
+        <span class="section-subtitle" style="text-align: center;">Прокат</span>
+        <div class="rent-layout">
+            <div class="rent-bike-card hidden-anim">
+                <img src="elvel1.png" alt="E-Bike Urban">
+                <h4>Engwe ep 2 pro</h4>
+                <p>Идеален для комфортных поездок по городу. Батарея на 80 км.</p>
+            </div>
+            
+            <div class="rent-center-info hidden-anim">
+                <h2>Прокат<br>Велосипедов</h2>
+                <p>Изучи город без лишних усилий. Наши велосипеды всегда обслужены и готовы к поездке. </p> 
+                    <strong style="color: #ffffff; font-size: 1.4em; padding-left: 5px;">19<span style="font-size: 0.6em;">.99€</span> <span style="font-size: 0.7em; font-weight: normal;">в сутки!</span></strong></p>
+                <button class="action-btn btn-solid" onclick="openModal('Аренда E-Bike')">Оставить заявку <i class="fa-solid fa-bolt"></i></button>
+            </div>
+
+            <div class="rent-bike-card hidden-anim">
+                <img src="elvel2.png" alt="E-Bike MTB">
+                <h4>Engwe m20</h4>
+                <p>Мощный мотор для покорения лесных троп и бездорожья.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="section-sale" class="service-detail-section sale-section">
+        <span class="section-subtitle">Магазин</span>
+        <h2 class="section-title hidden-anim">Новые велосипеды</h2>
+        <p class="hidden-anim">В нашем офлайн-магазине представлены горные, городские, гравийные и детские велосипеды от ведущих мировых производителей, предоставляем гарантию и сборку на месте. Приходите на тест-драйв!</p>
+        
+        <div class="carousel-container hidden-anim">
+            <div class="carousel-track">
+                <div class="bike-slide">
+                    <img src="vel1.png" alt="Bike 1">
+                    <h4>Gravel Pro XL</h4>
+                    <p style="color: var(--primary-color); font-weight: bold;">от 1200 €</p>
+                </div>
+                <div class="bike-slide">
+                    <img src="vel2.png" alt="Bike 2">
+                    <h4>City Comfort Line</h4>
+                    <p style="color: var(--primary-color); font-weight: bold;">от 450 €</p>
+                </div>
+                <div class="bike-slide">
+                    <img src="vel3.png" alt="Bike 3">
+                    <h4>Enduro MTB 29"</h4>
+                    <p style="color: var(--primary-color); font-weight: bold;">от 2100 €</p>
+                </div>
+                <div class="bike-slide">
+                    <img src="vel4.png" alt="Bike 4">
+                    <h4>Kids Race BMX</h4>
+                    <p style="color: var(--primary-color); font-weight: bold;">от 300 €</p>
+                </div>
+                <div class="bike-slide">
+                    <img src="vel5.png" alt="Bike 5">
+                    <h4>Urban Fixie</h4>
+                    <p style="color: var(--primary-color); font-weight: bold;">от 550 €</p>
+                </div>
+                
+                <div class="bike-slide">
+                    <img src="vel6.png" alt="Bike 1">
+                    <h4>Gravel Pro XL</h4>
+                    <p style="color: var(--primary-color); font-weight: bold;">от 1200 €</p>
+                </div>
+                <div class="bike-slide">
+                    <img src="vel7.png" alt="Bike 2">
+                    <h4>City Comfort Line</h4>
+                    <p style="color: var(--primary-color); font-weight: bold;">от 450 €</p>
+                </div>
+                <div class="bike-slide">
+                    <img src="vel8.png" alt="Bike 3">
+                    <h4>Enduro MTB 29"</h4>
+                    <p style="color: var(--primary-color); font-weight: bold;">от 2100 €</p>
+                </div>
+                <div class="bike-slide">
+                    <img src="vel9.png" alt="Bike 4">
+                    <h4>Kids Race BMX</h4>
+                    <p style="color: var(--primary-color); font-weight: bold;">от 300 €</p>
+                </div>
+                <div class="bike-slide">
+                    <img src="vel10.png" alt="Bike 5">
+                    <h4>Urban Fixie</h4>
+                    <p style="color: var(--primary-color); font-weight: bold;">от 550 €</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="section-field" class="field-section hidden-anim">
+        <div class="field-content">
+            <span class="section-subtitle">Техпомощь</span>
+            <h2>Выездной ремонт</h2>
+            <div class="price-tag">Выезд по Даугавпилсу - 25€</div>
+            <p>Сломались в дороге или нет возможности привезти велосипед в мастерскую? Наш оборудованный микроавтобус приедет к вам. Мы можем починить байк на месте или забрать его в сервис и привезти обратно.</p>
+            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 30px;"><i class="fa-regular fa-clock"></i> Время работы выездного мастера: 9:00 - 18:00</p>
+            
+            <a href="tel:+37122479780" class="action-btn btn-solid" style="font-size: 18px; padding: 15px 40px;">
+                Вызвать мастера <i class="fa-solid fa-phone-volume"></i>
+            </a>
+        </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <div class="modal-overlay" id="bookingModal">
+        <div class="modal-content">
+            <i class="fa-solid fa-xmark modal-close" onclick="closeModal()"></i>
+            <h3>Оставить заявку</h3>
+            <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Заявка успешно отправлена! Мы свяжемся с вами.'); closeModal();">
+                <div class="form-group">
+                    <label>Ваше имя</label>
+                    <input type="text" placeholder="Иван Иванов" required>
+                </div>
+                <div class="form-group">
+                    <label>Номер телефона</label>
+                    <input type="tel" placeholder="+371 2..." required>
+                </div>
+                <div class="form-group">
+                    <label>Тип услуги</label>
+                    <select id="modalServiceSelect" required>
+                        <option value="Ремонт">Ремонт велосипеда</option>
+                        <option value="Аренда E-Bike">Аренда электровелосипеда</option>
+                        <option value="Консультация">Консультация перед покупкой</option>
+                    </select>
+                </div>
+                <button type="submit" class="action-btn btn-solid" style="width: 100%; margin-top: 10px;">Отправить <i class="fa-solid fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+
+    <script>
+    function loadComponent(id, path) {
+        fetch(path)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById(id).innerHTML = data;
+            })
+            .catch(error => console.error('Ошибка загрузки:', error));
+    }
+
+    loadComponent('header-placeholder', 'components/header.html');
+    loadComponent('footer-placeholder', 'components/footer.html');
+    </script>
+    
+</body>
+</html>

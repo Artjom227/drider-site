@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drider - Экстрим Парк и Сервис</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <section class="hero-split">
+        
+        <div class="split-panel panel-velo">
+            <div class="panel-bg"></div>
+            <div class="panel-overlay"></div>
+            <div class="panel-content">
+                <h2>Велоуслуги</h2>
+                <div class="panel-hidden-content">
+                    <p>Профессиональный ремонт, обслуживание и аренда велосипедов всех типов.</p>
+                    <a href="velo-page.html" class="action-btn">Перейти <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="split-panel panel-karting">
+            <div class="panel-bg"></div>
+            <div class="panel-overlay"></div>
+            <div class="panel-content">
+                <h2>Картинг</h2>
+                <div class="panel-hidden-content">
+                    <p>Экстремальные гонки на профессиональной трассе. Ощути драйв и скорость.</p>
+                    <a href="karting-page.html" class="action-btn">Перейти <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="split-panel panel-moto">
+            <div class="panel-bg"></div>
+            <div class="panel-overlay"></div>
+            <div class="panel-content">
+                <h2>Мотокросс</h2>
+                <div class="panel-hidden-content">
+                    <p>Безумные трассы и мощные мотоциклы. Готов к настоящему экстриму?</p>
+                    <a href="moto-page.html" class="action-btn">Перейти <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <main class="details-wrapper">
+        
+        <div id="services" class="detail-row">
+            <div class="detail-text hidden-anim-left">
+                <span class="section-tag">Сервис</span>
+                <h3>Современный<br>Велосервис</h3>
+                <p>Мы предоставляем полный спектр услуг: от базовой настройки переключателей до сложного ремонта амортизаторов и электровелосипедов (E-Bike). Качественные детали всегда в наличии.</p>
+                <a href="velo-page.html" class="action-btn">Узнать больше <i class="fa-solid fa-wrench"></i></a>
+            </div>
+            <div class="detail-image hidden-anim-right">
+                <img src="https://images.unsplash.com/photo-1596414436856-121631e50f5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Велосервис">
+            </div>
+        </div>
+
+        <div id="karting" class="detail-row">
+            <div class="detail-text hidden-anim-right">
+                <span class="section-tag">Драйв</span>
+                <h3>Крытый Картинг<br>нового уровня</h3>
+                <p>Лучшие карты, современная телеметрия и безопасная трасса. Идеально подходит как для новичков, так и для профи. Организуем турниры и корпоративы.</p>
+                <a href="karting-page.html" class="action-btn">Забронировать заезд <i class="fa-solid fa-flag-checkered"></i></a>
+            </div>
+            <div class="detail-image hidden-anim-left">
+                <img src="https://images.unsplash.com/photo-1574889498260-244e83ba5ba2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Картинг">
+            </div>
+        </div>
+
+        <div id="motocross" class="detail-row">
+            <div class="detail-text hidden-anim-left">
+                <span class="section-tag">Экстрим</span>
+                <h3>Мотокросс Парк<br>и прокат</h3>
+                <p>Специально подготовленные трассы с трамплинами и препятствиями. Аренда кроссовых мотоциклов и полная защитная экипировка. Обучение с инструктором.</p>
+                <a href="moto-page.html" class="action-btn">Записаться на трек <i class="fa-solid fa-motorcycle"></i></a>
+            </div>
+            <div class="detail-image hidden-anim-right">
+                <img src="https://images.unsplash.com/photo-1518779555231-90a905be870c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Мотокросс">
+            </div>
+        </div>
+
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+
+    <script src="js/main.js"></script>
+
+    <script>
+        function loadComponent(id, path) {
+            fetch(path)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById(id).innerHTML = data;
+                })
+                .catch(error => console.error('Ошибка загрузки:', error));
+        }
+
+        loadComponent('header-placeholder', 'components/header.html');
+        loadComponent('footer-placeholder', 'components/footer.html');
+    </script>
+</body>
+</html>

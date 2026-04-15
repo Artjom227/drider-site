@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drider - Крытый Картинг</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* --- СПЕЦИФИЧНЫЕ СТИЛИ ДЛЯ КАРТИНГА --- */
+        .hero-kart-logo {
+            height: 300px; /* Установите желаемую высоту вашего логотипа */
+            width: auto;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 15px rgba(255,255,255,0.3));
+        }
+
+        /* --- СЕКЦИЯ ЦЕН (ПРАЙС) --- */
+        .pricing-section {
+            padding: 100px 5% 50px; text-align: center;
+        }
+
+        .pricing-grid {
+            display: flex; justify-content: center; max-width: 600px; margin: 0 auto;
+        }
+
+        .price-card {
+            background: linear-gradient(145deg, var(--surface-color) 0%, rgba(20,0,0,0.4) 100%);
+            border: 1px solid rgba(240, 45, 58, 0.3);
+            border-radius: 20px; padding: 50px 40px; width: 100%; position: relative;
+            transition: var(--transition); overflow: hidden;
+            box-shadow: 0 15px 40px rgba(240, 45, 58, 0.1);
+        }
+
+        .price-card:hover { border-color: var(--primary-color); box-shadow: 0 15px 50px rgba(240, 45, 58, 0.2); transform: translateY(-5px); }
+
+        .price-card h3 { font-size: 28px; margin-bottom: 10px; text-transform: uppercase; }
+        .price-card .price { font-size: 55px; font-weight: 800; color: var(--primary-color); margin-bottom: 30px; }
+        .price-card .price span { font-size: 18px; color: var(--text-muted); font-weight: 400;}
+        
+        .price-card ul { list-style: none; text-align: left; margin-bottom: 30px; margin-left: 10%;}
+        .price-card ul li { margin-bottom: 15px; color: var(--text-main); font-size: 15px; position: relative;}
+        .price-card ul li::before { content: '✓'; position: absolute; left: -30px; color: var(--primary-color); font-weight: bold; font-size: 18px;}
+        
+        .price-notice { margin-top: 30px; font-size: 13px; color: var(--text-muted); border-top: 1px solid var(--glass-border); padding-top: 20px;}
+
+        /* --- 3 ГОРИЗОНТАЛЬНЫХ БЛОКА (Широкие) --- */
+        .features-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 30px; padding: 50px 2%; width: 100%; max-width: 1600px; margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--surface-color); border: 1px solid var(--glass-border);
+            border-radius: 15px; overflow: hidden; transition: var(--transition);
+        }
+
+        .feature-card:hover { transform: translateY(-5px); border-color: var(--primary-color); }
+        .feature-card img { width: 100%; height: 300px; object-fit: cover; border-bottom: 1px solid var(--glass-border); transition: transform 0.5s ease;}
+        .feature-card:hover img { transform: scale(1.05); }
+        .feature-info { padding: 30px; text-align: center; background: var(--surface-color); position: relative; z-index: 2;}
+        .feature-info h3 { font-size: 20px; margin-bottom: 15px; text-transform: uppercase; }
+        .feature-info p { color: var(--text-muted); font-size: 14px; line-height: 1.7;}
+
+        /* Список преимуществ карта */
+        .kart-list {
+            list-style: none; margin-bottom: 25px; padding: 0;
+        }
+        .kart-list li {
+            margin-bottom: 10px; font-size: 15px; color: var(--text-main);
+            display: flex; align-items: center; gap: 10px;
+        }
+        .kart-list li i { color: var(--primary-color); font-size: 14px;}
+
+        /* --- ТРАССА И ЕЁ ХАРАКТЕРИСТИКИ --- */
+        .track-map-section {
+            padding: 100px 5%; text-align: center; position: relative; background: rgba(0,0,0,0.3);
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .track-map-container {
+            max-width: 1200px; margin: 40px auto; position: relative;
+        }
+
+        .track-map-container img {
+            width: 100%; max-height: 600px; object-fit: contain; border-radius: 20px;
+            box-shadow: 0 0 50px rgba(240,45,58,0.15); border: 1px solid rgba(240,45,58,0.3);
+            background: var(--surface-color); padding: 20px;
+        }
+
+        .track-features {
+            display: flex; justify-content: center; gap: 20px; margin-top: 50px; flex-wrap: wrap; max-width: 1200px; margin-left: auto; margin-right: auto;
+        }
+        
+        .tf-item {
+            background: var(--surface-color); border-radius: 15px; padding: 25px;
+            border: 1px solid var(--glass-border); display: flex; flex-direction: column; align-items: center;
+            flex: 1; min-width: 220px; text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.3); transition: var(--transition);
+        }
+        .tf-item:hover { border-color: var(--primary-color); transform: translateY(-5px); }
+        .tf-item i { font-size: 35px; color: var(--primary-color); margin-bottom: 15px;}
+        .tf-item strong { display: block; font-size: 20px; margin-bottom: 5px;}
+        .tf-item span { font-size: 13px; color: var(--text-muted); text-transform: uppercase;}
+
+        @media (max-width: 992px) {
+            .features-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .track-features { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <header class="hero" style="background: url('kart1.png') center/cover no-repeat;">
+        <div class="hero-content hidden-anim">
+            <img src="kartinglogo.png" alt="Логотип картинга" class="hero-kart-logo">
+            <h1>Крытый <span>Картинг</span></h1>
+            <p>Испытай настоящий драйв и скорость на лучшей крытой трассе города. Современные карты, безопасное покрытие и буря эмоций для любой компании.</p>
+        </div>
+    </header>
+
+    <section class="stats hidden-anim">
+        <div class="stat-card">
+            <h2 style="display: flex; justify-content: center; align-items: baseline; gap: 5px;">
+                <span class="counter" data-target="800">0</span> <span>м</span>
+            </h2>
+            <p>Длина трассы</p>
+        </div>
+        <div class="stat-card">
+            <h2 class="counter" data-target="20">0</h2>
+            <p>Мощных картов</p>
+        </div>
+        <div class="stat-card">
+            <h2>8-22</h2>
+            <p>Работаем каждый день</p>
+        </div>
+    </section>
+
+    <section class="pricing-section">
+        <span class="section-subtitle">Прайс-лист</span>
+        <h2 class="section-title hidden-anim">Стоимость заездов</h2>
+        
+        <div class="pricing-grid">
+            <div class="price-card hidden-anim">
+                <h3>Стандартный заезд</h3>
+                <p style="color: var(--text-muted); margin-bottom: 20px;">Единая цена на все дни недели</p>
+                
+                <div class="price">15€ <span>/ 10 мин</span></div>
+                
+                <ul>
+                    <li>Доступ ко всем стандартным картам</li>
+                    <li>Полная экипировка (шлем, подшлемник)</li>
+                    <li>Инструктаж по безопасности перед стартом</li>
+                    <li>Распечатка с результатами заезда</li>
+                </ul>
+
+                <div class="price-notice">
+                    <i class="fa-solid fa-circle-info" style="color: var(--primary-color); margin-right: 5px;"></i>
+                    Организация корпоративов и детских праздников — цена договорная. Уточняйте детали по телефону или электронной почте.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="features-grid">
+            <div class="feature-card hidden-anim">
+                <img src="kart3.png" alt="Трасса">
+                <div class="feature-info">
+                    <h3>Профессиональная Трасса</h3>
+                    <p>Идеальное асфальтовое покрытие, телеметрия уровня мировых стандартов и продуманные зоны безопасности. Почувствуй себя гонщиком F1.</p>
+                </div>
+            </div>
+            
+            <div class="feature-card hidden-anim" style="transition-delay: 0.1s;">
+                <img src="zal.png" alt="Зал ожидания">
+                <div class="feature-info">
+                    <h3>Зона Отдыха</h3>
+                    <p>Комфортный зал с панорамным видом на трассу. Мягкие диваны, экраны с результатами заездов в реальном времени, кофе и прохладительные напитки.</p>
+                </div>
+            </div>
+
+            <div class="feature-card hidden-anim" style="transition-delay: 0.2s;">
+                <img src="party.png" alt="Праздники">
+                <div class="feature-info">
+                    <h3>Корпоративы и Праздники</h3>
+                    <p>Организуем незабываемый день рождения, мальчишник или тимбилдинг. Закрытие трассы под вашу компанию, кейтеринг и награждение на подиуме.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="service-detail-section karts-section">
+        <div style="text-align: center; margin-bottom: 60px;">
+            <span class="section-subtitle">Автопарк</span>
+            <h2 class="section-title hidden-anim" style="margin-bottom: 0;">Наши Карты</h2>
+        </div>
+
+        <div class="detail-row hidden-anim">
+            <div class="detail-image">
+                <img src="kartcar1.png" alt="Взрослый Карт">
+            </div>
+            <div class="detail-text">
+                <h3>Sodi RT8 (Взрослый)</h3>
+                <ul class="kart-list">
+                    <li><i class="fa-solid fa-bolt"></i> Мощность: 9 л.с.</li>
+                    <li><i class="fa-solid fa-gauge-high"></i> Макс. скорость: 70 км/ч</li>
+                    <li><i class="fa-solid fa-shield"></i> Система поглощения ударов</li>
+                </ul>
+                <p style="color: var(--text-muted); font-size: 14px; line-height: 1.7;">Флагманская модель прокатного картинга. Отличается невероятной эргономикой, безопасностью и запатентованной системой поглощения ударов. Идеально сбалансирован для агрессивного прохождения поворотов и быстрого набора скорости.</p>
+            </div>
+        </div>
+
+        <div class="detail-row hidden-anim">
+            <div class="detail-text">
+                <h3>Sodi LR5 (Детский)</h3>
+                <ul class="kart-list">
+                    <li><i class="fa-solid fa-bolt"></i> Мощность: 5.5 л.с.</li>
+                    <li><i class="fa-solid fa-child-reaching"></i> Рост: от 130 см</li>
+                    <li><i class="fa-solid fa-shield"></i> Дуга безопасности и ремни</li>
+                </ul>
+                <p style="color: var(--text-muted); font-size: 14px; line-height: 1.7;">Разработан специально для юных гонщиков. Карт оснащен регулируемым сиденьем, педальным узлом и рулем, чтобы идеально подстроиться под ребенка. Максимальный уровень безопасности гарантирует спокойствие родителей.</p>
+            </div>
+            <div class="detail-image">
+                <img src="kartcar2.png" alt="Детский Карт">
+            </div>
+        </div>
+    </section>
+
+    <section class="track-map-section">
+        <span class="section-subtitle">Схема</span>
+        <h2 class="section-title hidden-anim" style="margin-bottom: 20px;">Конфигурация трассы</h2>
+        <p class="hidden-anim" style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">Широкие прямые для обгонов, техничные шпильки и скоростные S-образные связки. Трасса спроектирована так, чтобы быть интересной как новичкам, так и профи.</p>
+        
+        <div class="track-map-container hidden-anim">
+            <img src="tras.png" alt="План трассы">
+        </div>
+
+        <div class="track-features hidden-anim">
+            <div class="tf-item">
+                <i class="fa-solid fa-ruler-horizontal"></i>
+                <strong>800 метров</strong>
+                <span>Длина трассы</span>
+            </div>
+            <div class="tf-item">
+                <i class="fa-solid fa-route"></i>
+                <strong>14 поворотов</strong>
+                <span>Конфигурация</span>
+            </div>
+            <div class="tf-item">
+                <i class="fa-solid fa-shield-halved"></i>
+                <strong>Безопасность</strong>
+                <span>Высший стандарт</span>
+            </div>
+            <div class="tf-item">
+                <i class="fa-solid fa-stopwatch"></i>
+                <strong>Формула 1</strong>
+                <span>Система времени</span>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="js/main.js"></script>
+
+<script>
+    function loadComponent(id, path) {
+        fetch(path)
+            .then(response => {
+                if (!response.ok) throw new Error('Сетевая ошибка');
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById(id).innerHTML = data;
+            })
+            .catch(error => console.error(`Ошибка загрузки ${path}:`, error));
+    }
+
+    // Вызываем функцию для загрузки компонентов
+    loadComponent('header-placeholder', 'components/header.html');
+    loadComponent('footer-placeholder', 'components/footer.html');
+</script>
+</body>
+</html>
