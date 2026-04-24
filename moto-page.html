@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drider - Мотокросс</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* --- СПЕЦИФИЧНЫЕ СТИЛИ ДЛЯ СТРАНИЦЫ МОТОКРОССА --- */
+        
+        /* 1. ГЛАВНЫЙ ЭКРАН (HERO) */
+        .hero-moto {
+            background: linear-gradient(rgba(11, 12, 16, 0.6), rgba(11, 12, 16, 0.85)), url('fonmoto1.jpeg') center/cover no-repeat;
+        }
+
+        /* 2. СЕКЦИЯ С ТРАССОЙ (ANIMATED TRACK) */
+        .track-journey {
+            position: relative;
+            padding: 150px 5%;
+            overflow: hidden;
+            background: var(--bg-color);
+        }
+
+        /* Контейнер для линии трассы */
+        .track-svg-container {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .track-line {
+            fill: none;
+            stroke: rgba(240, 45, 58, 0.2);
+            stroke-width: 6;
+            stroke-linecap: round;
+            stroke-dasharray: 20 15;
+        }
+
+        .track-progress-line {
+            fill: none;
+            stroke: var(--primary-color);
+            stroke-width: 6;
+            stroke-linecap: round;
+            stroke-dashoffset: 0;
+            transition: stroke-dashoffset 0.1s linear;
+        }
+
+        /* Иконка мотоцикла на трассе */
+        .bike-rider {
+            position: absolute;
+            z-index: 10;
+            color: var(--primary-color);
+            font-size: 35px;
+            filter: drop-shadow(0 0 10px rgba(240, 45, 58, 0.8));
+            pointer-events: none; 
+            transform-origin: center center;
+        }
+
+        /* Контентные блоки на трассе */
+        .journey-block {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 300px;
+            width: 100%;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .journey-block.left {
+            justify-content: flex-start;
+        }
+
+        .journey-content {
+            width: 42%;
+            background: var(--surface-color);
+            border: 1px solid var(--glass-border);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .journey-content:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .journey-content img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-top: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .journey-content h2 {
+            font-size: 32px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .journey-content p {
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* 3. НОВОСТИ (НОВАЯ СТРУКТУРА) */
+        .news-section {
+            padding: 100px 5%;
+            background: rgba(255,255,255,0.02);
+            border-top: 1px solid var(--glass-border);
+        }
+
+        /* Главный заголовок по центру */
+        .news-main-title {
+            text-align: center;
+            font-size: 45px;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            margin-bottom: 60px;
+        }
+
+        .news-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 40px; /* Отступ между новостями */
+        }
+
+        /* Блок одной новости */
+        .news-row {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            background: var(--surface-color);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .news-row:hover {
+            border-color: rgba(240, 45, 58, 0.4);
+            transform: translateY(-5px);
+        }
+
+        /* Текст новости слева */
+        .news-info {
+            flex: 1;
+        }
+
+        .news-info h3 {
+            font-size: 28px;
+            color: var(--text-main);
+            margin-bottom: 15px;
+        }
+
+        .news-info p {
+            color: var(--text-muted);
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        /* Картинка новости справа */
+        .news-image {
+            flex: 1;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .journey-content { width: 45%; padding: 25px; }
+        }
+
+        @media (max-width: 768px) {
+            .track-journey { padding: 100px 20px; }
+            .track-svg-container { display: none; }
+            .journey-block, .journey-block.left { justify-content: center; }
+            .journey-content { width: 100%; margin-bottom: 50px; }
+            
+            /* На телефонах текст новости будет сверху, картинка снизу */
+            .news-row { flex-direction: column; text-align: center; }
+            .news-image { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <header class="hero hero-moto">
+        <div class="hero-content hidden-anim">
+            <h1>Мотокросс <span>Drider</span></h1>
+            <p>Почувствуй мощь мотора и свободу полета. Наша профессиональная трасса ждет райдеров любого уровня — от новичков до PRO.</p>
+        </div>
+    </header>
+
+    <section class="track-journey">
+        
+        <div class="track-svg-container">
+            <svg id="track-svg" width="200" height="100%" preserveAspectRatio="none" viewBox="0 0 200 1000">
+                <path d="M100,0 Q180,250 100,500 T100,1000" class="track-line" />
+                <path id="progress-path" d="M100,0 Q180,250 100,500 T100,1000" class="track-progress-line" />
+            </svg>
+            <div id="bike" class="bike-rider">
+                <i class="fa-solid fa-motorcycle"></i>
+            </div>
+        </div>
+
+        <div class="journey-block hidden-anim">
+            <div class="journey-content">
+                <h2>Наша Трасса</h2>
+                <p>Протяженность более 2-х километров с идеальным песчано-глиняным покрытием. Трасса включает в себя 12 поворотов, ритм-секции и столы до 25 метров.</p>
+                <img src="trasmoto1.jpeg" alt="Трасса">
+            </div>
+        </div>
+
+        <div class="journey-block left hidden-anim">
+            <div class="journey-content">
+                <h2>Турниры</h2>
+                <p>Мы регулярно проводим локальные и республиканские соревнования. У нас есть классы для детей (50сс, 65сс), любителей и профессионалов. Стань частью истории Drider MX!</p>
+                <img src="tourmoto1.jpeg" alt="Соревнования">
+            </div>
+        </div>
+
+        <div class="journey-block hidden-anim">
+            <div class="journey-content">
+                <h2>Тренировки</h2>
+                <p>Неважно, умеешь ли ты ездить или только купил первый байк. Наши инструкторы — мастера спорта — обучат тебя правильной стойке, технике прыжков и скоростному прохождению виражей.</p>
+                <img src="trenmoto1.jpeg" alt="Тренировки">
+            </div>
+        </div>
+
+    </section>
+
+    <section class="news-section">
+        <h2 class="news-main-title hidden-anim">Новости</h2>
+        
+        <div class="news-container">
+            
+            <div class="news-row hidden-anim">
+                <div class="news-info">
+                    <h3>Обновление трассы и полив</h3>
+                    <p>Сезон в самом разгаре! Мы постоянно улучшаем нашу базу. В этом месяце мы полностью обновили систему полива трассы, чтобы даже в самую сильную жару вы могли кататься без пыли. Также был расширен паддок для удобной парковки автомобилей с прицепами.</p>
+                </div>
+                <div class="news-image">
+                    <img src="tour1.jpeg" alt="Новость 1">
+                </div>
+            </div>
+
+            <div class="news-row hidden-anim">
+                <div class="news-info">
+                    <h3>Регистрация на Drider Summer Cup</h3>
+                    <p>Открыта долгожданная регистрация на ежегодный кубок! Призовой фонд в этом году составляет более 3000 евро. Ждем всех участников и зрителей. На территории будет работать фудкорт, диджей и детская зона. Не упусти шанс показать себя и отлично провести выходные.</p>
+                </div>
+                <div class="news-image">
+                    <img src="https://images.unsplash.com/photo-1621217684724-4ba2ec9eb7a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Новость 2">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="js/main.js"></script>
+
+    <script>
+        // Подгрузка шапки и подвала
+        function loadComponent(id, path) {
+            fetch(path)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById(id).innerHTML = data;
+                })
+                .catch(error => console.error('Ошибка загрузки компонента:', error));
+        }
+
+        loadComponent('header-placeholder', 'components/header.html');
+        loadComponent('footer-placeholder', 'components/footer.html');
+
+        // ТОЧНАЯ МАТЕМАТИКА ДЛЯ ДВИЖЕНИЯ БАЙКА
+        window.addEventListener('scroll', () => {
+            const bike = document.getElementById('bike');
+            const trackSection = document.querySelector('.track-journey');
+            const path = document.getElementById('progress-path');
+            
+            if(!trackSection || !bike || !path) return;
+
+            const sectionRect = trackSection.getBoundingClientRect();
+            const sectionTop = sectionRect.top;
+            const sectionHeight = sectionRect.height;
+            const windowHeight = window.innerHeight;
+
+            // Прогресс скролла (от 0 до 1)
+            let progress = (windowHeight / 2 - sectionTop) / (sectionHeight - windowHeight / 2);
+            progress = Math.max(0, Math.min(1, progress));
+
+            const pathLength = path.getTotalLength();
+            const point = path.getPointAtLength(progress * pathLength);
+            
+            const nextPoint = path.getPointAtLength(Math.min(pathLength, progress * pathLength + 1));
+            
+            const scaleY = sectionHeight / 1000;
+            const bikeX = point.x; 
+            const bikeY = point.y * scaleY;
+            
+            bike.style.left = `${bikeX}px`;
+            bike.style.top = `${bikeY}px`;
+
+            const dx = nextPoint.x - point.x;
+            const dy = nextPoint.y - point.y;
+            const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+            
+            bike.style.transform = `translate(-50%, -50%) rotate(${angle - 90}deg)`;
+
+            path.style.strokeDasharray = pathLength;
+            path.style.strokeDashoffset = pathLength - (progress * pathLength);
+        });
+    </script>
+
+</body>
+</html>
